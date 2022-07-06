@@ -6,12 +6,13 @@ const filterName = document.querySelector(".filterName");
 
 const filterNumber = document.querySelector(".filterNumber");
 
+const filterType = document.querySelector(".filter-type");
+
 const showByNames = () => {
   cards.innerHTML = "";
 
   const showPokemons = pokemonArray.filter((pokemon) => {
     if (pokemon.name == filterName.value) {
-      console.log(pokemon);
       return pokemon;
     }
   });
@@ -27,8 +28,27 @@ const showByNumber = () => {
   }
 };
 
+const showByType = () => {
+  cards.innerHTML = "";
+
+  let showPokemons = 0;
+
+  if (filterType.value == "any") {
+    showPokemons = pokemonArray;
+  } else {
+    showPokemons = pokemonArray.filter((pokemon) => {
+      if (pokemon.types.includes(filterType.value)) {
+        return pokemon;
+      }
+    });
+  }
+
+  displayPokemon(showPokemons);
+};
+
 filterName.addEventListener("input", showByNames);
 filterNumber.addEventListener("input", showByNumber);
+filterType.addEventListener("input", showByType);
 
 const checkTypes = (pokemon, index) => {
   if (pokemonArray[index - 1].types.length == 1)
