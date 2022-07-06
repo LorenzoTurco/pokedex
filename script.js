@@ -1,4 +1,4 @@
-import pokemonArray from "/data/pokemon.js";
+import { pokemonArray } from "./data/pokemon.js";
 
 const cards = document.querySelector(".card-container");
 const filterName = document.querySelector(".filterName");
