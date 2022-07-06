@@ -1,13 +1,13 @@
 import pokemonArray from "/data/pokemon.js";
 
 const cards = document.querySelector(".card-container");
-
 const filterName = document.querySelector(".filterName");
-
 const filterNumber = document.querySelector(".filterNumber");
-
 const filterType = document.querySelector(".filter-type");
 
+//FILTER FUNCITONS
+
+//Filter by Name
 const showByNames = () => {
   cards.innerHTML = "";
 
@@ -20,6 +20,7 @@ const showByNames = () => {
   displayPokemon(showPokemons);
 };
 
+//Filter by Number
 const showByNumber = () => {
   cards.innerHTML = "";
 
@@ -28,6 +29,7 @@ const showByNumber = () => {
   }
 };
 
+//Filter by Type
 const showByType = () => {
   cards.innerHTML = "";
 
@@ -46,10 +48,12 @@ const showByType = () => {
   displayPokemon(showPokemons);
 };
 
+//EVENT LISTENERS
 filterName.addEventListener("input", showByNames);
 filterNumber.addEventListener("input", showByNumber);
 filterType.addEventListener("input", showByType);
 
+//Pokemon type checker
 const checkTypes = (pokemon, index) => {
   if (pokemonArray[index - 1].types.length == 1)
     return `${pokemon.name} (# ${index}) is ${pokemon.types[0]} a  type pokemon`;
@@ -57,6 +61,7 @@ const checkTypes = (pokemon, index) => {
   return `${pokemon.name} (# ${index}) is a ${pokemon.types[0]} & a ${pokemon.types[1]} type pokemon`;
 };
 
+// Pokemon card format
 const displayPokemon = (pokemonList) => {
   for (let i = 0; i < pokemonList.length; i++) {
     cards.innerHTML += `
@@ -70,4 +75,6 @@ const displayPokemon = (pokemonList) => {
     </div>`;
   }
 };
+
+//display cards
 displayPokemon(pokemonArray);
